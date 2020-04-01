@@ -1,0 +1,27 @@
+#connectpanel {
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    float: right;
+    padding: 4px;
+    font-size: 10px;
+}
+
+label {
+    float: left;
+}
+
+#status {
+    float: right;
+    font-weight: bold;
+}
+
+#device {
+    float: right;
+    font-weight: bold;
+}
+
+
+

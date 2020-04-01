@@ -1,0 +1,6 @@
+.idea/
+server/static/
+krabzmill.tgz
+client/build/
+client/node_modules/
+
