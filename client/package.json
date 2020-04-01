@@ -6,7 +6,8 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.1",
-    "react-stay-scrolled": "^3.0.0"
+    "react-stay-scrolled": "^3.0.0",
+    "js-yaml": ">=3.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
