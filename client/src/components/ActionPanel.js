@@ -206,6 +206,14 @@ class ActionPanel extends Component {
                 <br/>
                 <br/>
                 <button onClick={(() => {
+                    this.sendCommand("HOMEXY")
+                }).bind(this)}
+                        disabled={this.state.running || !this.props.connected}>
+                    Home XY (g92 z0 g0 z2 g28 x0 y0 z2)
+                </button>
+                <br/>
+                <br/>
+                <button onClick={(() => {
                     this.sendCommand("RESETORIGIN")
                 }).bind(this)}
                         disabled={this.state.running || !this.props.connected}>

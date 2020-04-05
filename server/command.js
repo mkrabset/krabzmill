@@ -54,6 +54,10 @@ const command_module = {
                     resetOrigin()
                     break
                 }
+                case "HOMEXY": {
+                    homeXY()
+                    break
+                }
                 case "MOVE_10_UP": {
                     move(0,10)
                     break
@@ -137,12 +141,12 @@ function toolOff() {
 }
 
 function move(x,y) {
-    serial.run(["g91",`g0 x${x} y${y}`,"g90"])
+    serial.run(["g91",`g1 x${x} y${y}`,"g90"])
 }
 
-
-
-
+function homeXY() {
+    serial.run(['g92 z0','g0 z2','g28 x0 y0 z2'])
+}
 
 
 module.exports = command_module
