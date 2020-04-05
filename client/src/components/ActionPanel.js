@@ -30,6 +30,7 @@ class ActionPanel extends Component {
         this.statusDescr = this.statusDescr.bind(this)
         this.toggleExpand = this.toggleExpand.bind(this)
         this.move = this.move.bind(this)
+        this.zmove = this.zmove.bind(this)
         this.toggleBigMove=this.toggleBigMove.bind(this)
         this.state = {
             idle: true,
@@ -150,6 +151,12 @@ class ActionPanel extends Component {
         }
     }
 
+    zmove(dir) {
+        if (!this.state.running && this.props.connected) {
+            this.sendCommand("Z_"+(this.state.bigMove ? "10":"1") +"_"+ dir)
+        }
+    }
+
     toggleBigMove() {
         this.setState({
             bigMove: !this.state.bigMove
@@ -222,21 +229,32 @@ class ActionPanel extends Component {
                 <br/>
                 <br/>
                 <div align="center">
-                    <table>
+                    <table className={"wide"}>
+                        <tr>
+                            <th colspan={3}>XY</th>
+                            <th>   </th>
+                            <th colspan={1}>Z</th>
+                        </tr>
                         <tr>
                             <td></td>
                             <td><img src={up} width={48} onClick={() => {this.move("UP")}}/></td>
                             <td></td>
+                            <td></td>
+                            <td><img src={up} width={48} onClick={() => {this.zmove("UP")}}/></td>
                         </tr>
                         <tr>
                             <td><img src={left} width={48} onClick={() => {this.move("LEFT")}}/></td>
                             <td><button onClick={this.toggleBigMove}>{this.state.bigMove?"10mm":"1mm"}</button></td>
                             <td><img src={right} width={48} onClick={() => {this.move("RIGHT")}}/></td>
+                            <td></td>
+                            <td><button onClick={this.toggleBigMove}>{this.state.bigMove?"10mm":"1mm"}</button></td>
                         </tr>
                         <tr>
                             <td></td>
                             <td><img src={down} width={48} onClick={() => {this.move("DOWN")}}/></td>
                             <td></td>
+                            <td></td>
+                            <td><img src={down} width={48} onClick={() => {this.zmove("DOWN")}}/></td>
                         </tr>
                     </table>
                 </div>

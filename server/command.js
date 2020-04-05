@@ -1,5 +1,5 @@
-const serial=require('./serial')
-const gcode_module=require('./gcode')
+const serial = require('./serial')
+const gcode_module = require('./gcode')
 
 const command_module = {
     post: (req, res) => {
@@ -58,36 +58,52 @@ const command_module = {
                     homeXY()
                     break
                 }
+                case "Z_10_UP": {
+                    move(0, 0, 10)
+                    break
+                }
+                case "Z_10_DOWN": {
+                    move(0, 0, -10)
+                    break
+                }
+                case "Z_1_UP": {
+                    move(0, 0, 1)
+                    break
+                }
+                case "Z_1_DOWN": {
+                    move(0, 0, -1)
+                    break
+                }
                 case "MOVE_10_UP": {
-                    move(0,10)
+                    move(0, 10, 0)
                     break
                 }
                 case "MOVE_10_LEFT": {
-                    move(-10,0)
+                    move(-10, 0, 0)
                     break
                 }
                 case "MOVE_10_RIGHT": {
-                    move(10,0)
+                    move(10, 0, 0)
                     break
                 }
                 case "MOVE_10_DOWN": {
-                    move(0,-10)
+                    move(0, -10, 0)
                     break
                 }
                 case "MOVE_1_UP": {
-                    move(0,1)
+                    move(0, 1, 0)
                     break
                 }
                 case "MOVE_1_LEFT": {
-                    move(-1,0)
+                    move(-1, 0, 0)
                     break
                 }
                 case "MOVE_1_RIGHT": {
-                    move(1,0)
+                    move(1, 0, 0)
                     break
                 }
                 case "MOVE_1_DOWN": {
-                    move(0,-1)
+                    move(0, -1, 0)
                     break
                 }
             }
@@ -112,7 +128,7 @@ function haltresume() {
     serial.haltResume()
 }
 
-function abort(){
+function abort() {
     serial.abort()
 }
 
@@ -140,12 +156,12 @@ function toolOff() {
     serial.run(["m5"])
 }
 
-function move(x,y) {
-    serial.run(["g91",`g1 x${x} y${y}`,"g90"])
+function move(x, y, z) {
+    serial.run(["g91", `g1 x${x} y${y} z${z}`, "g90"])
 }
 
 function homeXY() {
-    serial.run(['g92 z0','g0 z2','g28 x0 y0 z2'])
+    serial.run(['g92 z0', 'g0 z2', 'g28 x0 y0 z2'])
 }
 
 
