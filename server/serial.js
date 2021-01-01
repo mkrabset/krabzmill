@@ -25,7 +25,6 @@ const serial = {
             const programToRun = program
                 .map(line => line.split("//").shift().trim())
                 .map(line => line.split("--").shift().trim())
-                .map(line => line.split("#").shift().trim())
                 .filter(line => line.length > 0)
             if (programToRun.length>0) {
                 doRun(programToRun)
